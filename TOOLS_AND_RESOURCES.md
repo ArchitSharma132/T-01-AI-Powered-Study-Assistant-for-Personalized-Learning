@@ -8,7 +8,7 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## API Keys & Secrets
 
 | Key / Secret | Source | Cost | Where Used | How to Get |
-|---|---|---|---|---|
+
 | `OLLAMA_BASE_URL` | Ollama (local) | **Free** | LLM chat + embeddings | Install Ollama → runs on `localhost:11434` |
 | `JWT_SECRET` | Self-generated | **Free** | Auth token signing | Generate any random string |
 | `DATABASE_URL` | PostgreSQL (Docker) | **Free** | All data storage | Auto-configured via Docker Compose |
@@ -22,13 +22,13 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## AI / ML Models (via Ollama — all local, all free)
 
 | Model | Purpose | Pull Command | Size |
-|---|---|---|---|
+
 | `mistral` | Question generation, topic tagging, grading | `ollama pull mistral` | ~4.1 GB |
 | `nomic-embed-text` | Text embeddings for RAG/FAISS | `ollama pull nomic-embed-text` | ~274 MB |
 
 **Alternative models** (if your machine struggles with Mistral):
 | Model | Pull Command | Size | Notes |
-|---|---|---|---|
+
 | `llama3.2:3b` | `ollama pull llama3.2:3b` | ~2 GB | Lighter, still good quality |
 | `phi3:mini` | `ollama pull phi3:mini` | ~2.3 GB | Microsoft's small model, fast |
 | `gemma2:2b` | `ollama pull gemma2:2b` | ~1.6 GB | Google's small model |
@@ -38,7 +38,7 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## Backend Stack
 
 | Tool / Library | Version | Purpose | License |
-|---|---|---|---|
+
 | Python | 3.11+ (you have 3.14.3) | Backend runtime | PSF |
 | FastAPI | ≥0.110 | Web framework / REST API | MIT |
 | Uvicorn | latest | ASGI server | BSD |
@@ -63,7 +63,7 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## Frontend Stack
 
 | Tool / Library | Version | Purpose | License |
-|---|---|---|---|
+
 | Node.js | 18+ (you have 24.13.1) | Frontend runtime | MIT |
 | React | 18/19 | UI framework | MIT |
 | Vite | latest | Build tool / dev server | MIT |
@@ -78,7 +78,7 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## Infrastructure (Docker — all free)
 
 | Service | Image | Purpose |
-|---|---|---|
+
 | PostgreSQL | `postgres:15-alpine` | Primary database |
 | Redis | `redis:7-alpine` | Caching, background job queue |
 | Backend | Custom (Python 3.11-slim) | FastAPI application |
@@ -89,7 +89,7 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## Dev Tools
 
 | Tool | Version (yours) | Purpose |
-|---|---|---|
+
 | Git | 2.51.0 | Version control |
 | Docker Desktop | 29.6.1 | Containerization |
 | Docker Compose | 5.3.0 | Multi-container orchestration |
@@ -101,7 +101,7 @@ This file tracks **every** external tool, service, library, and API key used in 
 ## Total Cost
 
 | Category | Cost |
-|---|---|
+
 | AI / LLM | **$0** (Ollama, local) |
 | Database | **$0** (Docker PostgreSQL) |
 | Cache | **$0** (Docker Redis) |
