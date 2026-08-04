@@ -1,0 +1,21 @@
+# Sample Data
+
+Place 5+ syllabus PDFs here for testing the ingestion pipeline.
+
+## Expected Files
+
+| # | Filename | Subject | Pages | Expected Topics |
+|---|----------|---------|-------|-----------------|
+| 1 | `os_syllabus.pdf` | Operating Systems | ~15-30 | Processes, Memory, File Systems, Scheduling |
+| 2 | `daa_syllabus.pdf` | Design & Analysis of Algorithms | ~15-30 | Sorting, Graphs, DP, Greedy, Complexity |
+| 3 | `se_syllabus.pdf` | Software Engineering | ~15-30 | SDLC, Testing, Design Patterns, Project Mgmt |
+| 4 | `dbms_syllabus.pdf` | Database Management Systems | ~15-30 | SQL, Normalization, Transactions, Indexing |
+| 5 | `cn_syllabus.pdf` | Computer Networks | ~15-30 | OSI/TCP-IP, Routing, Transport, Security |
+
+## Usage
+These PDFs will be uploaded through the app's upload interface (or via `POST /documents/upload`) to test the full ingestion → chunking → embedding → quiz generation pipeline.
+
+## Notes
+- Use real university syllabus PDFs (not scanned images) for best text extraction results
+- Keep each file under 20MB
+- Text-based PDFs work significantly better than scanned PDFs with PyMuPDF
