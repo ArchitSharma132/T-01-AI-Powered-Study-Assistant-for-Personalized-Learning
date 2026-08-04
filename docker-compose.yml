@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: studyapp
+      POSTGRES_PASSWORD: studyapp_dev_pass
+      POSTGRES_DB: studyassistant
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U studyapp -d studyassistant"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://studyapp:studyapp_dev_pass@postgres:5432/studyassistant
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  pgdata:
